@@ -171,3 +171,5 @@ CORS_ORIGIN_WHITELIST = [
 'http://www.avgcdr.tk',
 'https://www.avgcdr.tk',
 ]
+
+CAPTCHA_SECRET_KEY = os.getenv('CAPTCHA_SECRET_KEY')

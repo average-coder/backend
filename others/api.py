@@ -4,6 +4,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 import requests
 from .util import get_client_ip
 from rest_framework.response import Response
+from django.conf import settings
+
 
 class PostRequestAPIView(generics.CreateAPIView):
     serializer_class = PostRequestSerializer
@@ -12,7 +14,7 @@ class PostRequestAPIView(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         r = requests.post('https://www.google.com/recaptcha/api/siteverify',
         data={
-            'secret': secret_key,
+            'secret': settings.CAPTCHA_SECRET_KEY,
             'response': request.data['responseG'],
             'remoteip': get_client_ip(self.request),
         }
