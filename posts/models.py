@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=1000, null = False, blank = False, unique = True)
+    title = models.CharField(null = False, blank = False, unique = True, max_length=225)
     author = models.ForeignKey(User, null = False, blank = False, on_delete = models.CASCADE, related_name="posts")
     date_posted  = models.DateTimeField(default=timezone.now, null = False, blank = False)
     data = models.TextField(null = False, blank = False)
@@ -23,13 +23,13 @@ class Image(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, null = False, blank = False, related_name = "comments", on_delete = models.CASCADE)
-    name = models.CharField(max_length = 200, null = False, blank = False)
+    name = models.CharField(max_length = 100, null = False, blank = False)
     date_posted  = models.DateTimeField(default=timezone.now, null = False, blank = False)
-    data = models.CharField(null = False, blank = False, max_length = 5000)
+    data = models.TextField(null = False, blank = False)
 
 
 class SubComment(models.Model):
     comment = models.ForeignKey(Comment, null = False, blank = False, related_name = "sub_comments", on_delete = models.CASCADE)
-    name = models.CharField(max_length = 200, null = False, blank = False)
+    name = models.CharField(max_length = 100, null = False, blank = False)
     date_posted  = models.DateTimeField(default=timezone.now, null = False, blank = False)
-    data = models.CharField(null = False, blank = False, max_length = 5000)
+    data = models.TextField(null = False, blank = False)
