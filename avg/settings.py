@@ -162,4 +162,12 @@ CORS_ORIGIN_WHITELIST = [
 'http://localhost:3000',
 'http://localhost:8000',
 'http://localhost:8080',
+'http://average-coder-backend.herokuapp.com',
+'https://average-coder-backend.herokuapp.com',
+'https://average-coder-web-application.herokuapp.com',
+'http://average-coder-web-application.herokuapp.com',
+'http://avgcdr.tk',
+'https://avgcdr.tk',
+'http://www.avgcdr.tk',
+'https://www.avgcdr.tk',
 ]
