@@ -19,9 +19,8 @@ class PostRequestAPIView(generics.CreateAPIView):
             'remoteip': get_client_ip(self.request),
         }
         )
-
-    if r.json()['success']:
-        return self.create(request, *args, **kwargs)
+        if r.json()['success']:
+            return self.create(request, *args, **kwargs)
         return Response(data={'error': 'ReCAPTCHA not verified.'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
