@@ -5,6 +5,7 @@ import requests
 from .util import get_client_ip
 from rest_framework.response import Response
 from django.conf import settings
+from rest_framework import status
 
 
 class PostRequestAPIView(generics.CreateAPIView):
