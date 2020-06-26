@@ -22,7 +22,7 @@ class PostRequestAPIView(generics.CreateAPIView):
         )
         if r.json()['success']:
             return self.create(request, *args, **kwargs)
-        return Response(data={'error': 'ReCAPTCHA not verified.'}, status=status.HTTP_406_NOT_ACCEPTABLE)
+        return Response(data={'captcha': 'ReCAPTCHA not verified.'}, status=status.HTTP_406_NOT_ACCEPTABLE)
 
 
 
