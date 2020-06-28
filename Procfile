@@ -1,1 +1,1 @@
-web: gunicorn avg.wsgi --preload
+web: gunicorn avg.wsgi
