@@ -26,8 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['average-coder-backend.herokuapp.com',
-                 'www.average-coder-backend.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['165.22.216.220', '127.0.0.1', 'localhost']
 
 
 # Application definition
