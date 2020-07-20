@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import dj_database_url
 from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,7 +26,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['average-coder-backend.herokuapp.com', 'www.average-coder-backend.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['average-coder-backend.herokuapp.com',
+                 'www.average-coder-backend.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -86,10 +86,15 @@ WSGI_APPLICATION = 'avg.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-      
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+    }
 }
-
-DATABASES['default'] =  dj_database_url.config(conn_max_age=600)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -150,22 +155,21 @@ else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CORS_ORIGIN_WHITELIST = [
-'http://localhost:3000',
-'http://localhost:8000',
-'http://localhost:8080',
-'http://average-coder-backend.herokuapp.com',
-'https://average-coder-backend.herokuapp.com',
-'https://average-coder-web-application.herokuapp.com',
-'http://average-coder-web-application.herokuapp.com',
-'http://avgcdr.tk',
-'https://avgcdr.tk',
-'http://www.avgcdr.tk',
-'https://www.avgcdr.tk',
+    'http://localhost:3000',
+    'http://localhost:8000',
+    'http://localhost:8080',
+    'http://average-coder-backend.herokuapp.com',
+    'https://average-coder-backend.herokuapp.com',
+    'https://average-coder-web-application.herokuapp.com',
+    'http://average-coder-web-application.herokuapp.com',
+    'http://avgcdr.tk',
+    'https://avgcdr.tk',
+    'http://www.avgcdr.tk',
+    'https://www.avgcdr.tk',
 ]
 
 CAPTCHA_SECRET_KEY = config('CAPTCHA_SECRET_KEY')
