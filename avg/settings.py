@@ -166,8 +166,6 @@ CORS_ORIGIN_WHITELIST = [
     'https://avgcdr.tk',
     'http://www.avgcdr.tk',
     'https://www.avgcdr.tk',
-    'http://157.245.106.48',
-    'https://157.245.106.48'
 ]
 
 CAPTCHA_SECRET_KEY = config('CAPTCHA_SECRET_KEY')
