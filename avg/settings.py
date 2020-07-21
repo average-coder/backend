@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['157.245.106.48', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['157.245.101.245', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -161,7 +161,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
     'http://localhost:8000',
-    'http://localhost:8080',
     'http://avgcdr.tk',
     'https://avgcdr.tk',
     'http://www.avgcdr.tk',
