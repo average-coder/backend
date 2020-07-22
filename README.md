@@ -26,5 +26,5 @@ This project is the backend for the average coders website. It is built using th
 ---
 
 ### BACKEND LINK
-[Average Coder Backend](https://avgcdr.tk/api/)
+[https://avgcdr.tk/api/](https://avgcdr.tk/api/)
 
