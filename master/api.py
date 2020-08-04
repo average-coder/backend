@@ -1,11 +1,13 @@
 from .serializers import UserSerializer, PostSerializer, CommentSerializer, SubCommentSerializer, ImageSerializer
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from django.contrib.auth.models import User
 from posts.models import Post, Comment, SubComment, Image
 from rest_framework.permissions import IsAdminUser
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    search_fields = ['username']
+    filter_backends = (filters.SearchFilter,)
     serializer_class = UserSerializer
     queryset = User.objects.all()
     permission_classes = [ IsAdminUser, ]
