@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['157.245.101.245', '127.0.0.1', 'localhost', 'avgcdr.tk']
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework_tracking',
     'others',
     'posts',
     'users',
@@ -130,6 +131,9 @@ USE_TZ = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 
@@ -158,13 +162,7 @@ else:
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://localhost:8000',
-    'http://avgcdr.tk',
-    'https://avgcdr.tk',
-    'http://www.avgcdr.tk',
-    'https://www.avgcdr.tk',
-]
-
 CAPTCHA_SECRET_KEY = config('CAPTCHA_SECRET_KEY')
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
