@@ -7,10 +7,14 @@ from rest_framework_tracking.models import APIRequestLog
 from rest_framework.response import Response
 from django.utils import timezone
 from django.utils.timezone import timedelta
+from rest_framework import pagination
 
+class TestPagination(pagination.PageNumberPagination):       
+    page_size = 10
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    pagination_class=TestPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['username']
     serializer_class = UserSerializer
@@ -19,6 +23,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class PostViewSet(viewsets.ModelViewSet):
+    pagination_class=TestPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title']
     serializer_class = PostSerializer
@@ -27,6 +32,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class CommentViewSet(viewsets.ModelViewSet):
+    pagination_class=TestPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['id']
     serializer_class = CommentSerializer
@@ -35,6 +41,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 class SubCommentViewSet(viewsets.ModelViewSet):
+    pagination_class=TestPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['id']
     serializer_class = SubCommentSerializer
@@ -43,6 +50,7 @@ class SubCommentViewSet(viewsets.ModelViewSet):
 
 
 class ImageViewSet(viewsets.ModelViewSet):
+    pagination_class=TestPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['id']
     serializer_class = ImageSerializer
@@ -51,6 +59,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 
 class LogViewSet(viewsets.ReadOnlyModelViewSet):
+    pagination_class=TestPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['id', 'path', 'errors', 'status_code']
     serializer_class = LogSerializer 
@@ -59,6 +68,7 @@ class LogViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class DashboardAPIView(generics.GenericAPIView):
+    pagination_class=TestPagination
     permission_classes = [ IsAdminUser, ]
 
     def get(self, request):
