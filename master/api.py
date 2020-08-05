@@ -77,14 +77,14 @@ class DashboardAPIView(generics.GenericAPIView):
         image_count = Image.objects.all().count()
 
         return Response({
-            "count_all_time_total":count_all_time_total,
             "count_today_total": count_today_total,
+            "count_today_unique": count_today_unique,
             "count_week_total": count_week_total,
+            "count_week_unique": count_week_unique,
+            "count_all_time_total":count_all_time_total,
+            "count_all_time_unique": count_all_time_unique,
             "posts_count": posts_count,
             "comment_count": comment_count,
             "editor_count": editor_count,
-            "image_count": image_count,
-            "count_all_time_unique": count_all_time_unique,
-            "count_today_unique": count_today_unique,
-            "count_week_unique": count_week_unique
+            "image_count": image_count
         })
