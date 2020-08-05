@@ -6,9 +6,10 @@ from .util import get_client_ip
 from rest_framework.response import Response
 from django.conf import settings
 from rest_framework import status
+from rest_framework_tracking.mixins import LoggingMixin
 
 
-class PostRequestAPIView(generics.CreateAPIView):
+class PostRequestAPIView(LoggingMixin, generics.CreateAPIView):
     serializer_class = PostRequestSerializer
     permission_classes = [ AllowAny, ]
 
@@ -26,6 +27,6 @@ class PostRequestAPIView(generics.CreateAPIView):
 
 
 
-class FeedbackAPIView(generics.CreateAPIView):
+class FeedbackAPIView(LoggingMixin, generics.CreateAPIView):
     serializer_class = FeedbackSerializer
     permission_classes = [ AllowAny, ]
