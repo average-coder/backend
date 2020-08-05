@@ -59,7 +59,7 @@ class LogViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class DashboardAPIView(generics.GenericAPIView):
-    #permission_classes = [ IsAdminUser, ]
+    permission_classes = [ IsAdminUser, ]
 
     def get(self, request):
 
