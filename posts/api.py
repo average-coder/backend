@@ -5,7 +5,7 @@ from .models import Post, Image
 from rest_framework_tracking.mixins import LoggingMixin
 
 class PostListAPI(LoggingMixin, generics.ListAPIView):
-    paginator = None
+    paginate_by = None
     search_fields = ['title']
     filter_backends = (filters.SearchFilter,)
     serializer_class = PostListSerializer
@@ -14,7 +14,7 @@ class PostListAPI(LoggingMixin, generics.ListAPIView):
 
 
 class PostAPI(LoggingMixin, viewsets.ReadOnlyModelViewSet):
-    paginator = None
+    paginate_by = None
     serializer_class = PostSerializer
     permission_classes = [ AllowAny, ]
     lookup_field = 'slug'
@@ -22,7 +22,7 @@ class PostAPI(LoggingMixin, viewsets.ReadOnlyModelViewSet):
 
 
 class EditorListAPI(LoggingMixin, generics.ListAPIView):
-    paginator = None
+    paginate_by = None
     serializer_class = PostListSerializer
     permission_classes = [ IsAuthenticated, ]
     search_fields = ['title']
@@ -33,7 +33,7 @@ class EditorListAPI(LoggingMixin, generics.ListAPIView):
 
 
 class EditorAPI(LoggingMixin, viewsets.ModelViewSet):
-    paginator = None
+    paginate_by = None
     serializer_class = EditorPostSerializer
     permission_classes = [ IsAuthenticated, ]
     
@@ -45,7 +45,7 @@ class EditorAPI(LoggingMixin, viewsets.ModelViewSet):
 
 
 class ImageAPI(LoggingMixin, viewsets.ModelViewSet):
-    paginator = None
+    paginate_by = None
     serializer_class = ImageSerializer
     permission_classes = [ IsAuthenticated, ]
     queryset = Image.objects.all()
@@ -62,7 +62,7 @@ class SubCommentAPI(LoggingMixin, generics.CreateAPIView):
 
 
 class SuggestionsAPI(generics.ListAPIView):
-    paginator = None
+    paginate_by = None
     serializer_class = PostListSerializer
     permission_classes = [ AllowAny, ]
     queryset = Post.objects.all().order_by('-date_posted')[:3]
