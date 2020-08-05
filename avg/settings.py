@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['157.245.101.245', '127.0.0.1', 'localhost', 'avgcdr.tk']
 
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['157.245.101.245', '127.0.0.1', 'localhost', 'avgcdr.tk']
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework_tracking',
     'others',
     'posts',
     'users',
@@ -131,7 +132,8 @@ USE_TZ = True
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 

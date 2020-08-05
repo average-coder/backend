@@ -2,8 +2,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework import serializers
 
-User._meta.get_field('email')._unique = True
-
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

@@ -2,9 +2,9 @@ from .serializers import PostSerializer, ImageSerializer, CommentSerializer, Sub
 from rest_framework import generics, filters, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import Post, Image
+from rest_framework_tracking.mixins import LoggingMixin
 
-
-class PostListAPI(generics.ListAPIView):
+class PostListAPI(LoggingMixin, generics.ListAPIView):
     search_fields = ['title']
     filter_backends = (filters.SearchFilter,)
     serializer_class = PostListSerializer
@@ -12,14 +12,14 @@ class PostListAPI(generics.ListAPIView):
     queryset = Post.objects.all().order_by('-date_posted')
 
 
-class PostAPI(viewsets.ReadOnlyModelViewSet):
+class PostAPI(LoggingMixin, viewsets.ReadOnlyModelViewSet):
     serializer_class = PostSerializer
     permission_classes = [ AllowAny, ]
     lookup_field = 'slug'
     queryset = Post.objects.all().order_by('-date_posted')
 
 
-class EditorListAPI(generics.ListAPIView):
+class EditorListAPI(LoggingMixin, generics.ListAPIView):
     serializer_class = PostListSerializer
     permission_classes = [ IsAuthenticated, ]
     search_fields = ['title']
@@ -29,7 +29,7 @@ class EditorListAPI(generics.ListAPIView):
         return self.request.user.posts
 
 
-class EditorAPI(viewsets.ModelViewSet):
+class EditorAPI(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = EditorPostSerializer
     permission_classes = [ IsAuthenticated, ]
     
@@ -40,18 +40,18 @@ class EditorAPI(viewsets.ModelViewSet):
         serializer.save(author = self.request.user)
 
 
-class ImageAPI(viewsets.ModelViewSet):
+class ImageAPI(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = ImageSerializer
     permission_classes = [ IsAuthenticated, ]
     queryset = Image.objects.all()
 
 
-class CommentAPI(generics.CreateAPIView):
+class CommentAPI(LoggingMixin, generics.CreateAPIView):
     serializer_class = CreateCommentSerializer
     permission_classes = [ AllowAny, ]
 
 
-class SubCommentAPI(generics.CreateAPIView):
+class SubCommentAPI(LoggingMixin, generics.CreateAPIView):
     serializer_class = CreateSubCommentSerializer
     permission_classes = [ AllowAny, ]
 
