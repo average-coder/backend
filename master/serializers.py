@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from posts.models import Post, Comment, SubComment, Image
 from rest_framework import serializers
-from rest_framework_tracking.models import APIRequestLog
+from tracking.models import APIRequestLog
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -41,5 +41,4 @@ class ImageSerializer(serializers.ModelSerializer):
 class LogSerializer(serializers.ModelSerializer):
     class Meta:
         model = APIRequestLog
-        fields = ['id', 'requested_at', 'response_ms', 'path', 'remote_addr',
-                  'host', 'method', 'query_params', 'errors', 'status_code']
+        fields = ['id', 'requested_at', 'response_ms', 'path', 'host', 'method', 'query_params', 'errors', 'status_code']

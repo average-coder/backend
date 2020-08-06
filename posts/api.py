@@ -2,7 +2,7 @@ from .serializers import PostSerializer, ImageSerializer, CommentSerializer, Sub
 from rest_framework import generics, filters, viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import Post, Image
-from rest_framework_tracking.mixins import LoggingMixin
+from tracking.mixins import LoggingMixin
 
 class PostListAPI(LoggingMixin, generics.ListAPIView):
     search_fields = ['title']
@@ -56,7 +56,7 @@ class SubCommentAPI(LoggingMixin, generics.CreateAPIView):
     permission_classes = [ AllowAny, ]
 
 
-class SuggestionsAPI(generics.ListAPIView):
+class SuggestionsAPI(LoggingMixin, generics.ListAPIView):
     serializer_class = PostListSerializer
     permission_classes = [ AllowAny, ]
     queryset = Post.objects.all().order_by('-date_posted')[:3]

@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ['157.245.101.245', '127.0.0.1', 'localhost', 'avgcdr.tk']
 INSTALLED_APPS = [
     'django_filters',
     'master',
-    'rest_framework_tracking',
+    'tracking',
     'others',
     'posts',
     'users',

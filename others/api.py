@@ -6,7 +6,7 @@ from .util import get_client_ip
 from rest_framework.response import Response
 from django.conf import settings
 from rest_framework import status
-from rest_framework_tracking.mixins import LoggingMixin
+from tracking.mixins import LoggingMixin
 
 
 class PostRequestAPIView(LoggingMixin, generics.CreateAPIView):
