@@ -7,7 +7,7 @@ from rest_framework_tracking.models import APIRequestLog
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "first_name", "last_name", "is_admin"]
+        fields = ["id", "username", "email", "first_name", "last_name", "is_superuser"]
 
 
 class PostSerializer(serializers.ModelSerializer):
