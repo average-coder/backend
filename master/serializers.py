@@ -7,18 +7,7 @@ from rest_framework_tracking.models import APIRequestLog
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id", "username", "email", "first_name", "last_name", "is_superuser", "password"]
-
-        def create(self, validate_data):
-            user = User.objects.create_user(
-                validate_data['username'],
-                validate_data['email'],
-                validate_data['password'],
-                validate_data['first_name'],
-                validate_data['last_name'],
-                validate_data['is_superuser'],
-            )
-            return user
+        fields = ["id", "username", "email", "first_name", "last_name"]
 
 
 class PostSerializer(serializers.ModelSerializer):
